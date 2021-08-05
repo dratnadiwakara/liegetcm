@@ -23,3 +23,7 @@ class TCInvestorForm(forms.ModelForm):
         model = Profile
         fields = ('legal_name', 'contact_name', 'phone_number','address','nic_number','bank_account_number','bank_name','bank_branch')
 
+class TrusteeStaffForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('phone_number',)

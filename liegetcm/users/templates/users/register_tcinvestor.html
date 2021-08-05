@@ -1,8 +1,0 @@
-<h1>Register TC Investor</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{ userdataform.as_p }}
-    <input type="text" name="usertype" value={{usertype}}    readonly>
-    <button type="submit">Register</button>
-</form>

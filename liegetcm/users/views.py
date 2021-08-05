@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterForm, ArrangerForm,TCInvestorForm
+from .forms import RegisterForm, ArrangerForm,TCInvestorForm,TrusteeStaffForm
 from django.contrib.auth.models import Group
 
 
@@ -14,6 +14,8 @@ def register(response,ut):
             userdataform = ArrangerForm(response.POST)
         elif usertype=='tcinvestor':
             userdataform = TCInvestorForm(response.POST)
+        elif usertype=='trusteestaff':
+            userdataform = TrusteeStaffForm(response.POST)
 
         if form.is_valid() and userdataform.is_valid():
             user=form.save()
@@ -26,15 +28,17 @@ def register(response,ut):
             return redirect("/login")
     else:
         usertype=ut
-        print(usertype)
         form = RegisterForm()
         if usertype=='arranger':
             userdataform = ArrangerForm()
         elif usertype=='tcinvestor':
             userdataform = TCInvestorForm()
-
-    if usertype=='arranger':
+        elif usertype=='trusteestaff':
+            userdataform = TrusteeStaffForm()
+    
+    return render(response,"users/register.html",{"form":form,"usertype":usertype,"userdataform":userdataform})
+    '''if usertype=='arranger':
         return render(response,"users/register_arranger.html",{"form":form,"usertype":usertype,"userdataform":userdataform})
     elif usertype=='tcinvestor':
-        return render(response,"users/register_tcinvestor.html",{"form":form,"usertype":usertype,"userdataform":userdataform})
+        return render(response,"users/register_tcinvestor.html",{"form":form,"usertype":usertype,"userdataform":userdataform})'''
 

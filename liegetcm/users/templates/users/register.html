@@ -1,8 +1,8 @@
-<h1>Register Arranger</h1>
+<h1>Register {{usertype}}</h1>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     {{ userdataform.as_p }}
-    <input type="text" name="usertype" value={{usertype}}     readonly>
+    <input type="text" name="usertype" value={{usertype}}    readonly>
     <button type="submit">Register</button>
 </form>

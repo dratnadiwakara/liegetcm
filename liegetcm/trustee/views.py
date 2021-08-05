@@ -11,6 +11,10 @@ def is_tcinvestor(user):
     return user.groups.filter(name="tcinvestor").exists() 
 
 
+def is_trusteestaff(user):
+    return user.groups.filter(name="trusteestaff").exists() 
+
+
 def index(request):
     return HttpResponse("Trustee Home page")
 
@@ -21,5 +25,7 @@ def home(request):
         return render(request,"trustee/arranger_home.html")
     elif is_tcinvestor(request.user):
         return render(request,"trustee/tcinvestor_home.html")
+    elif is_trusteestaff(request.user):
+        return render(request,"trustee/trustee_home.html")
     else:
         return redirect('/login')
